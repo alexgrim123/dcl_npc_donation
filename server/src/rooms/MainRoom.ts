@@ -133,20 +133,3 @@ export class MainRoom extends Room<MainRoomState> {
     }
 
 }
-
-function exposeLocalUrl(baseFolder: string, filePath: string, app: any) {
-    // Getting voice source
-    if (!app)
-        return ``;
-    const urlPath = `/${baseFolder}/${path.basename(filePath)}`;
-    app.get(urlPath, (req: any, res: any) => {
-        const absolutePath = path.resolve(filePath);
-        res.sendFile(absolutePath, (err: any) => {
-            if (err) {
-                console.error(`Error serving ${absolutePath}:`, err);
-                res.status(500).send("Error serving file");
-            }
-        });
-    });
-    return urlPath;
-}

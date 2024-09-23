@@ -4,7 +4,7 @@ import { getUserData } from '~system/UserIdentity'
 import {connectionColyseus} from './modules/connection'
 import "./modules/compatibility/polyfill/declares";
 import {setupUi} from './modules/ui/ui_loader';
-import { CustomPainting } from './modules/banner';
+import { CustomPainting, donationNPC } from './modules/banner';
 import { createNpc } from './GameObjects/NPC';
 import { Quaternion, Vector3 } from '@dcl/sdk/math';
 
@@ -27,13 +27,14 @@ export function main() {
             rotation: Quaternion.Zero(),
             scale: Vector3.create(1, 1, 1),
         }, "Configured OpenAI");
+        new CustomPainting(Vector3.create(8, 2, 6));
+        new donationNPC(Vector3.create(4, 0, 10),'models/woman_Idle.glb');
         // await createNpc('models/hotel_boy_collider.glb',true,false,{
         //     position: Vector3.create(2, 0, 2),
         //     rotation: Quaternion.Zero(),
         //     scale: Vector3.create(1, 1, 1),
         // }, "OpenAI + Rag");
         // set ollama
-        new CustomPainting(Vector3.create(8, 2, 6));
 
     })
 
